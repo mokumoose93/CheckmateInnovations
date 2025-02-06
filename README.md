@@ -9,8 +9,6 @@ Checkmate Innovations: Chess 1.2 - TAMUCC Software Engineering Course Project
 
 ## Learning Resources Folder Guide
 ---
-1. Naming Convention Guide
-   Currently only has naming convention for Branches in GitHub but we may want to add other naming conventions to help organize our code
-2. Resources Guide
-   Resource for tutorials and any notes I feel like are important to help us stay on the same page.
+1. Naming Convention Guide - Currently only has naming convention for Branches in GitHub but we may want to add other naming conventions to help organize our code
+2. Resources Guide - Resource for tutorials and any notes I feel like are important to help us stay on the same page.
    
