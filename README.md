@@ -5,6 +5,7 @@ Checkmate Innovations: Chess 1.2 - TAMUCC Software Engineering Course Project
 ---
 1. Visit the "Learning Resources" folder
 2. Explore the contents and get familiar with the resources!
+3. Get coding :)
 
 ## Learning Resources Folder Guide
 ---
