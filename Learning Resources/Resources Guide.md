@@ -24,7 +24,8 @@ tags:
 			- creating a branch
 			- making changes to your local file
 			- committing those changes
-			- pushing those changes to the GitHub repository
+			- pushing those changes to the GitHub repositor
+
 ### Unity Documentation
 ---
 - [Unity Scripting Reference](https://docs.unity3d.com/ScriptReference/index.html)
