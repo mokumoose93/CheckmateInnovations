@@ -17,6 +17,15 @@ tags:
 	- I already went through the process of integrating VS Code into our Unity project but feel free to watch this video to get familiar with the changes if you run into issues.
 	- He also covers some really helpful VS Code Extensions that help coding in C#
 		- I don't recommend the intellisense feature - I found it kind of annoying to use, but you may like what it has to offer. Experiment
+- [Using GitHub with Unity](https://youtu.be/qpXxcvS-g3g)
+	- I already went through the Unity Setup but I recommend watching this anyways so that you can:
+		- Learn to get GitHub set up on your desktop
+		- Get familiar with these important steps:
+			- creating a branch
+			- making changes to your local file
+			- committing those changes
+			- pushing those changes to the GitHub repositor
+
 ### Unity Documentation
 ---
 - [Unity Scripting Reference](https://docs.unity3d.com/ScriptReference/index.html)
