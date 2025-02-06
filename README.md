@@ -1,8 +1,14 @@
 # CheckmateInnovations
 Checkmate Innovations: Chess 1.2 - TAMUCC Software Engineering Course Project
 
-## Project Design Goals
+## Getting Started
 ---
-1. some stuff
-2. some more stuff
-3. and so on...
+1. Visit the "Learning Resources" folder
+2. Explore the contents and get familiar with the resources!
+3. Get coding :)
+
+## Learning Resources Folder Guide
+---
+1. Naming Convention Guide - Currently only has naming convention for Branches in GitHub but we may want to add other naming conventions to help organize our code
+2. Resources Guide - Resource for tutorials and any notes I feel like are important to help us stay on the same page.
+   
