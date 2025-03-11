@@ -1,0 +1,35 @@
+using UnityEngine;
+
+#ROOTNAMESPACEBEGIN#
+public class #SCRIPTNAME# : MonoBehaviour {
+    //*********************************************
+    //* VARIABLES
+    //*********************************************
+    
+    
+
+    //*********************************************
+    //* START + UPDATE FUNCTIONS
+    //*********************************************
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start() {
+        #NOTRIM#
+    }
+
+    // Update is called once per frame
+    void Update() {
+        #NOTRIM#
+    }
+
+    //*********************************************
+    //* STANDARD CLASS FUNCTIONS
+    //*********************************************
+
+
+
+    //*********************************************
+    //* EVENT FUNCTIONS
+    //*********************************************
+}
+#ROOTNAMESPACEEND#

@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 using PlayerUnits;
+//using System.Numerics;
 
 //TODO write code that makes individual tiles in a tilemap respond when hovered over by cursor (move tile up or have sprite appear, etc.)
 //TODO write code that allows players to make action happen when clicking on a tile with a unit on it
@@ -19,10 +20,10 @@ namespace Gameboard {
         //*********************************************
         //* VARIABLES
         //*********************************************
-        public Rook selectedUnit;
+        public PlayerUnit selectedUnit;
 
         private Tilemap tilemap;
-        public GameObject selectedObject;
+        public GameObject selectedObject;               //? Redundant to have selectedObject AND selectedUnit
         public GameObject hoveringObject;
         public GameObject pathTile;
 
@@ -48,34 +49,32 @@ namespace Gameboard {
             // Get Tilemap that is associated with GameObject that this script is attached as a component to
             tilemap = this.GetComponent<Tilemap>();
             selectedObject = null;
+            selectedUnit = null;
             hasSelectedPiece = false;
             pathIsDrawn = false;
 
-            // GameObject testObject = tilemap.GetInstantiatedObject(tilemap.origin);
-            // Debug.Log(testObject.ToString());
+            // // Iterate through all the children of the tilemap
+            // int counter = 0; // include a counter to differentiate between objects of identical names
+            // foreach (Transform child in tilemap.transform) {
+            //     // Append the counter to the child's name
+            //     child.name = $"{child.name}_{counter}";
+            //     Debug.Log("Found painted GameObject: " + child.name);
 
-            // Iterate through all the children of the tilemap
-            int counter = 0; // include a counter to differentiate between objects of identical names
-            foreach (Transform child in tilemap.transform) {
-                // Append the counter to the child's name
-                child.name = $"{child.name}_{counter}";
-                Debug.Log("Found painted GameObject: " + child.name);
+            //     GameObject gameObject = child.gameObject; // Example of getting the GameObject from the Transform
 
-                GameObject gameObject = child.gameObject; // Example of getting the GameObject from the Transform
+            //     // Move the child in a direction that is within the bounds of the tilemap
+            //     Vector3Int cellPosition = tilemap.WorldToCell(child.position); // Convert world position of child to cell position in tilemap
+            //     bool moveCheck = tilemap.HasTile(cellPosition + Vector3Int.right); // Check if the child can move to the right on the tilemap
+            //     if (moveCheck) {
+            //         //child.transform.Translate(Vector3Int.right);
+            //         Debug.Log("Child translated Cell Position: " + (cellPosition + Vector3Int.right));
+            //         child.transform.position = tilemap.GetCellCenterWorld(cellPosition + Vector3Int.right); // Use GetCellCenterWorld and NOT CellToWorld
+            //         //TODO Lerp the movement
+            //         //tile.transform.position = Vector3.Lerp(originalPosition, targetPosition, elapsedTime / (animationDuration / 2));
+            //     }
 
-                // Move the child in a direction that is within the bounds of the tilemap
-                Vector3Int cellPosition = tilemap.WorldToCell(child.position); // Convert world position of child to cell position in tilemap
-                bool moveCheck = tilemap.HasTile(cellPosition + Vector3Int.right); // Check if the child can move to the right on the tilemap
-                if (moveCheck) {
-                    //child.transform.Translate(Vector3Int.right);
-                    Debug.Log("Child translated Cell Position: " + (cellPosition + Vector3Int.right));
-                    child.transform.position = tilemap.GetCellCenterWorld(cellPosition + Vector3Int.right); // Use GetCellCenterWorld and NOT CellToWorld
-                    //TODO Lerp the movement
-                    //tile.transform.position = Vector3.Lerp(originalPosition, targetPosition, elapsedTime / (animationDuration / 2));
-                }
-
-                counter++; // increment the counter
-            }
+            //     counter++; // increment the counter
+            // }
 
         }
 
@@ -83,20 +82,15 @@ namespace Gameboard {
         void Update() {
             // Get mouse position from screen to world to tilemap cell coordinates
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int cellPosition = tilemap.WorldToCell(mouseWorldPos);
+            mouseWorldPos.z = 0;
+            Vector3Int cellPosition = tilemap.WorldToCell(mouseWorldPos);   //? probably obsolete
 
             // Update the Render Order for all the GameObjects on this tilemap
             UpdateRenderOrder();
 
             // Perform Actions for Left Mouse Click (GetMouseButtonDown(0))
             if (Input.GetMouseButtonDown(0)) {
-                // Check if there's a unit at the cell position
-                Collider2D hit = Physics2D.OverlapPoint(tilemap.GetCellCenterWorld(cellPosition));
-                if (hit != null && hit.tag == "Unit") {
-                    SelectObject(hit.gameObject);
-                } else {
-                    DeselectObject();
-                }
+                MouseClickLeft(mouseWorldPos);
             }
 
             // // Actions to perform when an object is selected 
@@ -119,9 +113,9 @@ namespace Gameboard {
             //     ClearMovementPath();
             // }
 
-            //TODO calculate movement path from the unit itself
+            //TODO Logic needs to be cleaned up, shouldn't have to call CalculateMovementPath every frame. Maybe only on mouse click?
             if (selectedObject != null && selectedObject.tag == "Unit") {
-                selectedUnit = selectedObject.GetComponent<Rook>();
+                selectedUnit = selectedObject.GetComponent<PlayerUnit>();
                 movePath = selectedUnit.CalculateMovementPath();
 
                 if (PathChanged()) {
@@ -183,19 +177,20 @@ namespace Gameboard {
             }
         }
 
+        //TODO transforming the localScale seems to cause issues with collider detection, how to resolve this?
         void SelectObject(GameObject obj) {
             if (selectedObject != null) {
                 DeselectObject();
             }
             selectedObject = obj;
-            selectedObject.transform.localScale *= transformScale;
+            // selectedObject.transform.localScale *= transformScale;
             Debug.Log("Selected: " + selectedObject.name);
         }
 
         void DeselectObject() {
             if (selectedObject != null) {
                 Debug.Log("Deselected: " + selectedObject.name);
-                selectedObject.transform.localScale /= transformScale;
+                // selectedObject.transform.localScale /= transformScale;
                 selectedObject = null;
             }
         }
@@ -239,7 +234,6 @@ namespace Gameboard {
         void DrawMovementPath() {
             // if movePath exists and there is no path drawn yet, draw path
             if (movePath != null && !pathIsDrawn) {
-                Debug.Log("Drawing Movement Path");
                 movePathTiles = new List<GameObject>();
                 // Generate the movement path tiles
                 foreach (Vector3Int tilePos in movePath) {
@@ -250,8 +244,6 @@ namespace Gameboard {
         }
 
         void ClearMovementPath() {
-            Debug.Log("Clearing Movement Path");
-            // movePathTilesLocs != null &&
             if (movePathTiles != null && pathIsDrawn) {
                 foreach (GameObject obj in movePathTiles) {
                     Destroy(obj);
@@ -289,15 +281,9 @@ namespace Gameboard {
             int yBound = tilemap.cellBounds.yMax;
             Vector3Int mouseCellPos = tilemap.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
-            // Debug.Log("tilemap.origin.x: " + tilemap.origin.x);
-            // Debug.Log("mouseCellPos.x: " + mouseCellPos.x);
-            // Debug.Log("xBound: " + xBound);
-
             if (mouseCellPos.x >= tilemap.origin.x && mouseCellPos.x < xBound && mouseCellPos.y >= tilemap.origin.y && mouseCellPos.y < yBound) {
-                // Debug.Log("Mouse In Bounds");
                 return true;
             } else {
-                // Debug.Log("Mouse Not In Bounds");
                 return false;
             }
         }
@@ -310,6 +296,7 @@ namespace Gameboard {
             // Confirm that hit is actually positioned on that cell and not just overlapping it with a collider
             if (hit != null && hit.tag == "Unit") { // Check that something was actually hit and that it is tagged as a "Unit"
                 Vector3Int actualPos = tilemap.WorldToCell(hit.gameObject.transform.position);
+                Debug.Log("(Hit, Loc): (" + hit.gameObject + ", " + actualPos);
                 if (actualPos == cellPos) { // Check that the position of that collider is actually in the cell being checked
                     return true;
                 }
@@ -321,8 +308,51 @@ namespace Gameboard {
         //* EVENT FUNCTIONS
         //*********************************************
 
-        //! Currently avoiding OnMouse events because they require interaction with a collider associated with the tilemap which is currently an issue
 
+
+        void MouseClickLeft(Vector3 mousePos) {
+            Vector3Int cellPosition = tilemap.WorldToCell(mousePos);
+
+            // Check if there's a unit at the cell position
+            Collider2D hit = Physics2D.OverlapPoint(tilemap.GetCellCenterWorld(cellPosition));
+            if (hit != null) {
+                switch (hit.tag) {
+                    case "Unit":
+                        SelectObject(hit.gameObject);
+                        break;
+                    case "Path":
+                        if (selectedObject != null && selectedUnit != null) {
+                            selectedUnit.Move(cellPosition);
+                            DeselectObject();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            } else {
+                DeselectObject();
+            }
+
+
+            // if (hit != null && hit.tag == "Unit") {
+            //     SelectObject(hit.gameObject);
+            // } else {
+            //     DeselectObject();
+            // }
+
+            //TODO if a unit is selected and the mouse clicks on the path, move that unit to that position
+            if (hit != null && hit.tag == "Path") {
+                if (selectedObject != null && selectedUnit != null) {
+                    selectedUnit.Move(cellPosition);
+                    DeselectObject();
+                }
+            }
+
+            //TODO use a switch case to separate different cases
+
+        }
+
+        //! Currently avoiding OnMouse events because they require interaction with a collider associated with the tilemap which is currently an issue
         void OnMouseOver() {
             // // Convert the mouse position to world coordinates
             // Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
