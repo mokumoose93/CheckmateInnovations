@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Gameboard;
 using System.Collections.Generic;
+using Codice.CM.Client.Differences;
 
 namespace PlayerUnits {
     public abstract class PlayerUnit : MonoBehaviour {
@@ -9,9 +10,8 @@ namespace PlayerUnits {
 
         private SpriteRenderer spriteRenderer;
         public Tilemap tilemap;                         // Tilemap that this unit is positioned on
-        public Vector3Int objCellPos;
-
-        //public List<Vector3Int> movePath;
+        // public Vector3Int objCellPos;
+        // public Vector3 objPos;
 
         private bool isSelected = false;
         private bool isHovering = false;
@@ -29,13 +29,16 @@ namespace PlayerUnits {
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start() {
+            //TODO where is the world center of the object when selected and not selected? does it change?
+
+
             // Assign Components
             tilemap = GetComponentInParent<Tilemap>();
             tilemapBehavior = GetComponentInParent<TilemapBehavior>();      //! Unit must be a child of the tilemap in the hierarchy for this to work
             spriteRenderer = GetComponent<SpriteRenderer>();
 
             // Assign values of Unity Class Variables
-            objCellPos = tilemap.WorldToCell(gameObject.transform.position);
+            //objCellPos = tilemap.WorldToCell(gameObject.transform.position);  //! it is bad to assign this only at start
 
             // Assign simple variables
             maxBoundX = tilemap.cellBounds.xMax;
@@ -52,6 +55,14 @@ namespace PlayerUnits {
         //*********************************************
         //* STANDARD CLASS FUNCTIONS
         //*********************************************
+
+        public void Move(Vector3Int destCellPos) {
+            // Move from current position to destination position "destCellPos"
+            Vector3Int currCellPos = tilemap.WorldToCell(gameObject.transform.position);
+
+            gameObject.transform.position = tilemap.GetCellCenterWorld(destCellPos);
+            Debug.Log(gameObject + " moved to " + tilemap.GetCellCenterWorld(destCellPos));
+        }
 
         public abstract List<Vector3Int> CalculateMovementPath();
 
