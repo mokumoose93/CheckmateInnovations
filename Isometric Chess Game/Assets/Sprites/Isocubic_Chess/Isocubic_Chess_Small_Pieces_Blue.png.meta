@@ -134,20 +134,20 @@ TextureImporter:
       name: Isocubic_Chess_Small_Pieces_Blue_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 63
-        width: 16
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c9fc262c68d7d9a00800000000000000
-      internalID: 764905529463197596
+      spriteID: 2951abfb5296f1641904dfd297a2c303
+      internalID: 176299411
       vertices: []
       indices: 
       edges: []
@@ -156,20 +156,20 @@ TextureImporter:
       name: Isocubic_Chess_Small_Pieces_Blue_1
       rect:
         serializedVersion: 2
-        x: 38
-        y: 63
-        width: 20
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b7be797c5ac8bcd50800000000000000
-      internalID: 6758650309445675899
+      spriteID: 73a68ace7f3555242a8dff2ec040cff0
+      internalID: 12086874
       vertices: []
       indices: 
       edges: []
@@ -178,20 +178,20 @@ TextureImporter:
       name: Isocubic_Chess_Small_Pieces_Blue_2
       rect:
         serializedVersion: 2
-        x: 38
-        y: 0
-        width: 20
-        height: 63
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c6fd1aae5e46cdc00800000000000000
-      internalID: 926726561978244972
+      spriteID: 126372d300db9f84a98dee8981eb813f
+      internalID: 1534925743
       vertices: []
       indices: 
       edges: []
@@ -200,20 +200,20 @@ TextureImporter:
       name: Isocubic_Chess_Small_Pieces_Blue_3
       rect:
         serializedVersion: 2
-        x: 70
-        y: 0
-        width: 20
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 98016c053dd590fa0800000000000000
-      internalID: -5834028680107126647
+      spriteID: 46bd4fe54bfb26d4c9bcda005ed42b5e
+      internalID: 1759912041
       vertices: []
       indices: 
       edges: []
@@ -222,20 +222,20 @@ TextureImporter:
       name: Isocubic_Chess_Small_Pieces_Blue_4
       rect:
         serializedVersion: 2
-        x: 102
-        y: 0
-        width: 20
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 128
+        y: 64
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 688c4471c41f46640800000000000000
-      internalID: 5072444389436213382
+      spriteID: e14dfc78d2e5182478afde40680e1771
+      internalID: -84715762
       vertices: []
       indices: 
       edges: []
@@ -244,20 +244,20 @@ TextureImporter:
       name: Isocubic_Chess_Small_Pieces_Blue_5
       rect:
         serializedVersion: 2
-        x: 130
-        y: 31
-        width: 28
-        height: 65
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 90edf505ee44570a0800000000000000
-      internalID: -6884520665024569847
+      spriteID: 72f39c3c1003e46469a0533980b11c6d
+      internalID: 921422684
       vertices: []
       indices: 
       edges: []
@@ -266,20 +266,152 @@ TextureImporter:
       name: Isocubic_Chess_Small_Pieces_Blue_6
       rect:
         serializedVersion: 2
-        x: 8
-        y: 31
-        width: 16
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 683615f3a7f15d9f0800000000000000
-      internalID: -444414378317356154
+      spriteID: 6e5245d8363fe4a43a1d40548cd3abc5
+      internalID: 683387146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isocubic_Chess_Small_Pieces_Blue_7
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c0abf0724b01db4ba71d2222b8dcd3a
+      internalID: 1619326115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isocubic_Chess_Small_Pieces_Blue_8
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 218737019c63bfa4899b7fbba1313540
+      internalID: -2024579895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isocubic_Chess_Small_Pieces_Blue_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a96f583a8ace904429ddc0f42825fbe3
+      internalID: 804129442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isocubic_Chess_Small_Pieces_Blue_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e25d49167181834985746b3ddd0a05e
+      internalID: -2008873539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isocubic_Chess_Small_Pieces_Blue_11
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd40373c634408c48aa84eabab9f2e9e
+      internalID: 11129685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isocubic_Chess_Small_Pieces_Blue_12
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2d1b0d4ab06fbc4695cc245e3a2aa96
+      internalID: 419792841
       vertices: []
       indices: 
       edges: []
@@ -288,7 +420,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9f796c0019b7bc04a82839dfb8c1e28d
     internalID: 0
     vertices: []
     indices: 
@@ -297,7 +429,20 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Isocubic_Chess_Small_Pieces_Blue_0: 176299411
+      Isocubic_Chess_Small_Pieces_Blue_1: 12086874
+      Isocubic_Chess_Small_Pieces_Blue_10: -2008873539
+      Isocubic_Chess_Small_Pieces_Blue_11: 11129685
+      Isocubic_Chess_Small_Pieces_Blue_12: 419792841
+      Isocubic_Chess_Small_Pieces_Blue_2: 1534925743
+      Isocubic_Chess_Small_Pieces_Blue_3: 1759912041
+      Isocubic_Chess_Small_Pieces_Blue_4: -84715762
+      Isocubic_Chess_Small_Pieces_Blue_5: 921422684
+      Isocubic_Chess_Small_Pieces_Blue_6: 683387146
+      Isocubic_Chess_Small_Pieces_Blue_7: 1619326115
+      Isocubic_Chess_Small_Pieces_Blue_8: -2024579895
+      Isocubic_Chess_Small_Pieces_Blue_9: 804129442
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
