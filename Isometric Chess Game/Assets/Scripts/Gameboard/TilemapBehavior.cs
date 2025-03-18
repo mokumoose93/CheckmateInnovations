@@ -113,22 +113,22 @@ namespace Gameboard {
             //     ClearMovementPath();
             // }
 
-            //TODO Logic needs to be cleaned up, shouldn't have to call CalculateMovementPath every frame. Maybe only on mouse click?
-            if (selectedObject != null && selectedObject.tag == "Unit") {
-                selectedUnit = selectedObject.GetComponent<PlayerUnit>();
-                movePath = selectedUnit.CalculateMovementPath();
+            // //TODO Logic needs to be cleaned up, shouldn't have to call CalculateMovementPath every frame. Maybe only on mouse click?
+            // if (selectedObject != null && selectedObject.tag == "Unit") {
+            //     selectedUnit = selectedObject.GetComponent<PlayerUnit>();
+            //     movePath = selectedUnit.CalculateMovementPath();
 
-                if (PathChanged()) {
-                    ClearMovementPath();
-                }
+            //     if (PathChanged()) {
+            //         ClearMovementPath();
+            //     }
 
-                if (movePath != null) {
-                    DrawMovementPath();
-                }
+            //     if (movePath != null) {
+            //         DrawMovementPath();
+            //     }
 
-            } else {
-                ClearMovementPath();
-            }
+            // } else {
+            //     ClearMovementPath();
+            // }
 
             // Variable Post-Condition Updates
             lastMouseCellPos = cellPosition;
@@ -290,25 +290,57 @@ namespace Gameboard {
 
         // Check if the passed in cell position "cellPos" has a unit positioned on it
         public bool HasUnit(Vector3Int cellPos) {
-            // Check for object using OverlapPoint
-            Collider2D hit = Physics2D.OverlapPoint(tilemap.GetCellCenterWorld(cellPos));
+            // Check for object using OverlapPoint            
+            Collider2D[] hits = OverlapPointAllSorted(tilemap.GetCellCenterWorld(cellPos));
 
-            // Confirm that hit is actually positioned on that cell and not just overlapping it with a collider
-            if (hit != null && hit.tag == "Unit") { // Check that something was actually hit and that it is tagged as a "Unit"
+            // Check if any hits return as Unit
+            foreach (Collider2D hit in hits) {
                 Vector3Int actualPos = tilemap.WorldToCell(hit.gameObject.transform.position);
-                Debug.Log("(Hit, Loc): (" + hit.gameObject + ", " + actualPos);
-                if (actualPos == cellPos) { // Check that the position of that collider is actually in the cell being checked
+                if (hit.tag == "Unit" && actualPos == cellPos) { // Check if hit is a Unit and that Unit is actually positioned on cell being checked, NOT just that the collider is overlapping that point
                     return true;
                 }
             }
+
             return false;
+        }
+
+        public PlayerUnit GetUnit(Vector3Int cellPos) {
+            // Check for object using OverlapPoint
+            Collider2D[] hits = OverlapPointAllSorted(tilemap.GetCellCenterWorld(cellPos));
+
+            // Find first hit that is a Unit
+            foreach (Collider2D hit in hits) {
+                if (hit.tag == "Unit") {
+                    return hit.GetComponent<PlayerUnit>();
+                }
+            }
+
+            return null;
+        }
+
+        // Modified use of OverlapPointAll that includes sorting by spriteRenderer.sortingOrder
+        public Collider2D[] OverlapPointAllSorted(Vector2 point) {
+            // Retrieve the hits from specified point
+            Collider2D[] hits = Physics2D.OverlapPointAll(point);
+
+            // Remove all elements of array that do not have a SpriteRenderer component
+            hits = hits.Where(n => n.GetComponent<SpriteRenderer>() != null).ToArray();
+
+            // Sort the hits in ASCENDING order specified by spriteRenderer.sortingOrder            
+            if (hits != null) {
+                Array.Sort(hits, (t1, t2) => {
+                    int sortOrder1 = t1.GetComponent<SpriteRenderer>().sortingOrder;
+                    int sortOrder2 = t2.GetComponent<SpriteRenderer>().sortingOrder;
+                    return sortOrder1.CompareTo(sortOrder2);
+                });
+            }
+
+            return hits;
         }
 
         //*********************************************
         //* EVENT FUNCTIONS
         //*********************************************
-
-
 
         void MouseClickLeft(Vector3 mousePos) {
             Vector3Int cellPosition = tilemap.WorldToCell(mousePos);
@@ -322,7 +354,7 @@ namespace Gameboard {
                         break;
                     case "Path":
                         if (selectedObject != null && selectedUnit != null) {
-                            selectedUnit.Move(cellPosition);
+                            selectedUnit.MoveToCell(cellPosition);
                             DeselectObject();
                         }
                         break;
@@ -333,22 +365,22 @@ namespace Gameboard {
                 DeselectObject();
             }
 
+            // Check if an object was selected. If that object is a Unit, calculate the movement path based on that unit's moveset rules
+            if (selectedObject != null && selectedObject.tag == "Unit") {
+                selectedUnit = selectedObject.GetComponent<PlayerUnit>();
+                movePath = selectedUnit.CalculateMovementPath();
 
-            // if (hit != null && hit.tag == "Unit") {
-            //     SelectObject(hit.gameObject);
-            // } else {
-            //     DeselectObject();
-            // }
-
-            //TODO if a unit is selected and the mouse clicks on the path, move that unit to that position
-            if (hit != null && hit.tag == "Path") {
-                if (selectedObject != null && selectedUnit != null) {
-                    selectedUnit.Move(cellPosition);
-                    DeselectObject();
+                if (PathChanged()) {    // Is the new path different from the last path? Clear old path
+                    ClearMovementPath();
                 }
-            }
 
-            //TODO use a switch case to separate different cases
+                if (movePath != null) { // Has a move path been calculated?
+                    DrawMovementPath();
+                }
+
+            } else {
+                ClearMovementPath();
+            }
 
         }
 

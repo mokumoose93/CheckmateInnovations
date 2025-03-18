@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5881174962605761793
+--- !u!1 &9022031410431491270
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 318924590209840320}
-  - component: {fileID: 4408227563789201556}
-  - component: {fileID: 6979869130341973777}
-  - component: {fileID: 8566830899718204951}
+  - component: {fileID: 3396871108598306674}
+  - component: {fileID: 5163429605041873569}
+  - component: {fileID: 5476829677721402224}
+  - component: {fileID: 3186582949040104115}
   m_Layer: 0
-  m_Name: ChessPiece_Rook
+  m_Name: ChessPiece_King_Red
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &318924590209840320
+--- !u!4 &3396871108598306674
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5881174962605761793}
+  m_GameObject: {fileID: 9022031410431491270}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.46, y: -2.23, z: 0}
-  m_LocalScale: {x: 3.7, y: 3.7, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -10.984299, y: -3.6527843, z: 0.016714329}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &4408227563789201556
+--- !u!212 &5163429605041873569
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5881174962605761793}
+  m_GameObject: {fileID: 9022031410431491270}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -57,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bd7efec924dc083409ca2c3940aebeef, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,24 +78,24 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8009364213909655614, guid: 310e938010a9cc14992a37a32711ec75, type: 3}
+  m_Sprite: {fileID: 1541721973103237006, guid: 310e938010a9cc14992a37a32711ec75, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.33}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 1
---- !u!60 &6979869130341973777
+  m_SpriteSortPoint: 0
+--- !u!60 &5476829677721402224
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5881174962605761793}
+  m_GameObject: {fileID: 9022031410431491270}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -128,36 +128,39 @@ PolygonCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.15}
     oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 0.2, y: 0.33}
+    newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.03940277, y: 0.26447394}
-      - {x: -0.09940277, y: 0.23447394}
-      - {x: -0.09940277, y: -0.025526047}
-      - {x: -0.02940277, y: -0.065526046}
-      - {x: 0.040597226, y: -0.065526046}
-      - {x: 0.100597225, y: -0.035526045}
-      - {x: 0.100597225, y: 0.24447395}
-      - {x: 0.070597224, y: 0.26447394}
+    - - {x: -0.099999994, y: 0.27199996}
+      - {x: -0.14, y: 0.24199997}
+      - {x: -0.14, y: -0.02800003}
+      - {x: -0.08, y: -0.04800003}
+      - {x: 0.089999996, y: -0.04800003}
+      - {x: 0.14, y: -0.00800003}
+      - {x: 0.14, y: 0.24199997}
+      - {x: 0.08, y: 0.27199996}
   m_UseDelaunayMesh: 0
---- !u!114 &8566830899718204951
+--- !u!114 &3186582949040104115
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5881174962605761793}
+  m_GameObject: {fileID: 9022031410431491270}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec9886d90157fe942a754aeeb84fca6d, type: 3}
+  m_Script: {fileID: 11500000, guid: e1dfbbc358358864cb2946f0c9ce8037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitType: 0
   tilemapBehavior: {fileID: 0}
   tilemap: {fileID: 0}
+  player: {fileID: 647218716653922556, guid: 924b5cdeacbf8bd4b95506e340925a63, type: 3}
+  playerData: {fileID: 0}
   maxBoundX: 0
   maxBoundY: 0
   minBoundX: 0

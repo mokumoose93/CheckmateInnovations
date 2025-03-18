@@ -3,15 +3,29 @@ using UnityEngine.Tilemaps;
 using Gameboard;
 using System.Collections.Generic;
 using Codice.CM.Client.Differences;
+using System.Text.RegularExpressions;
 
 namespace PlayerUnits {
     public abstract class PlayerUnit : MonoBehaviour {
-        public TilemapBehavior tilemapBehavior;         // TilemapBehavior class instantiation associated with tilemap behavior
+
+        public enum UnitType {
+            Pawn,
+            Rook,
+            Knight,
+            Bishop,
+            Queen,
+            King
+        }
+
+        public UnitType unitType;
+        public TilemapBehavior tilemapBehavior;             // TilemapBehavior class instantiation associated with tilemap behavior
 
         private SpriteRenderer spriteRenderer;
-        public Tilemap tilemap;                         // Tilemap that this unit is positioned on
-        // public Vector3Int objCellPos;
-        // public Vector3 objPos;
+        public Tilemap tilemap;                             // Tilemap that this unit is positioned on
+        public GameObject player;
+        protected Vector3Int startingCell;
+
+        public Player playerData;                           // The player that this unit belongs to
 
         private bool isSelected = false;
         private bool isHovering = false;
@@ -28,17 +42,15 @@ namespace PlayerUnits {
         //*********************************************
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start() {
-            //TODO where is the world center of the object when selected and not selected? does it change?
-
-
+        protected virtual void Start() {
             // Assign Components
             tilemap = GetComponentInParent<Tilemap>();
             tilemapBehavior = GetComponentInParent<TilemapBehavior>();      //! Unit must be a child of the tilemap in the hierarchy for this to work
             spriteRenderer = GetComponent<SpriteRenderer>();
+            playerData = player.GetComponent<Player>();
 
             // Assign values of Unity Class Variables
-            //objCellPos = tilemap.WorldToCell(gameObject.transform.position);  //! it is bad to assign this only at start
+            startingCell = tilemap.WorldToCell(gameObject.transform.position);
 
             // Assign simple variables
             maxBoundX = tilemap.cellBounds.xMax;
@@ -56,12 +68,53 @@ namespace PlayerUnits {
         //* STANDARD CLASS FUNCTIONS
         //*********************************************
 
-        public void Move(Vector3Int destCellPos) {
+        public virtual void MoveToCell(Vector3Int destCellPos) {
             // Move from current position to destination position "destCellPos"
             Vector3Int currCellPos = tilemap.WorldToCell(gameObject.transform.position);
+            PlayerUnit targetPiece = tilemapBehavior.GetUnit(destCellPos);
+
+            // Check if destination already has a unit on it, if there is a unit already there, check if capturable, if capturable, capture
+            if (tilemapBehavior.HasUnit(destCellPos)) {
+                if (IsCapturable(targetPiece)) {
+                    CapturePiece(targetPiece);
+                } else {
+                    Debug.Log("Cannot capture your own units!");
+                    return;
+                }
+            }
 
             gameObject.transform.position = tilemap.GetCellCenterWorld(destCellPos);
             Debug.Log(gameObject + " moved to " + tilemap.GetCellCenterWorld(destCellPos));
+        }
+
+        public bool IsCapturable(PlayerUnit target) {
+            Debug.Log(target + "Is Capturable!");
+            // Check if target piece is from a different player, return true, otherwise return false
+            if (this.player != target.player) {
+                return true;
+            } else {
+                return false;
+            }
+
+            //TODO implement other conditions? what if piece is same player but swappable, etc.?
+        }
+
+        //TODO finish this function
+        public void CapturePiece(PlayerUnit target) {
+            Debug.Log("Capturing " + target);
+            Vector3Int targetPos = tilemap.WorldToCell(target.transform.position);
+
+            // Destroy the target object and then update game
+            target.Death();
+
+            //TODO some kind of UpdateGame() updating game points and captured pieces list for the score board
+        }
+
+        // Perform necessary functions to indicate that this piece has encountered Death (Destroyed)
+        public void Death() {
+            Debug.Log(this + "is calling Death()");
+            //TODO DeathAnimation();
+            Destroy(this.gameObject);
         }
 
         public abstract List<Vector3Int> CalculateMovementPath();
